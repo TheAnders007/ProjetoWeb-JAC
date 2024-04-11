@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+html {
+    background-color: rgb(34, 34, 34);
+    font-family: "Work Sans", sans-serif;
+}
+
+body{
+    max-height: 1580px;
+    max-width: 1950px;
+}
+
+header {
+    background-color: #FFFCBD;
+    margin-left: 565px;
+    margin-right: -10px;
+    margin-top: -2000px;
+    padding: 20px;
+    color: #DDAC00;
+    font-weight: 600;
+    font-size: 30px;
+
+}
+
+a {
+    color: #c09805;
+    font-weight: 600;
+    font-size: 25px;
+    margin-top: 10px;
+    text-decoration: none;
+}
+
+.container {
+    padding: 60px;
+    width: 450px;
+    height: 1880px;
+    margin-left: -5px;
+    margin-top: -10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #FF6A6A;
+}
+
+.confira{
+    margin-left: 750px;
+    margin-top: 250px;
+    color: rgb(236, 236, 231);
+}
+
+.peca {
+    color: black;
+    margin-top: 20px;
+}
+
+.peca:hover {
+    color: rgb(189, 15, 15);
+    transition: 1s;
+}
+
+.itemMenu {
+    margin-left: 90%;
+}
+
+h1 {
+    font-weight: 800;
+    font-size: 90px;
+    margin-top: -50px;
+    margin-bottom: 80px;
+}
+
+.linha {
+    background-color: #7e0000;
+    margin-top: -70px;
+    width: 577px;
+    height: 2px;
+}
+
+.titulo{
+    margin-top: 35px;
+    margin-left: 610px;
+    font-size: 80px;
+    color:beige;
+}
+
+.pecaimagem{
+    height: 250px;
+    width: 440px;
+    margin-left: 660px;
+    border: 2px solid white;
+    border-radius: 20px;
+}
+
+.sinopse{
+    color:beige;
+    width:  720px;
+    height: 400px;
+    font-size: 24px;
+    font-family: "Work Sans", sans-serif;
+    text-align: justify;
+    margin-left: 1180px;
+    margin-top: -250px;
+}
+
+table {
+    border-collapse: collapse;
+    margin-top: -90px;
+}
+
+table, th,td, tr {
+  font-family: "Work Sans", sans-serif;
+  color: beige;
+  padding: 15px;
+  border: 0.5px solid rgb(214, 214, 214);
+  margin-left: 650px;
+  width: 1220px;
+  text-align: center;
+}
+
+th{
+    background-color: black;
+}
