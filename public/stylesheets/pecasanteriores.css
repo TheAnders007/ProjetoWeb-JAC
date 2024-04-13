@@ -7,51 +7,53 @@ html {
 }
 
 body{
-    max-height: 1580px;
-    max-width: 1950px;
+ resize: none;
 }
 
 header {
     background-color: #FFFCBD;
-    margin-left: 565px;
-    margin-right: -10px;
-    margin-top: -2000px;
+    position: absolute;
+    width: 900px;
+    left: 378.3px;
+    height: -20px;
+    top: 0px;
     padding: 20px;
     color: #DDAC00;
-    font-weight: 600;
-    font-size: 30px;
-
 }
 
 a {
     color: #c09805;
     font-weight: 600;
     font-size: 25px;
-    margin-top: 10px;
     text-decoration: none;
 }
 
 .container {
     padding: 60px;
-    width: 450px;
-    height: 1880px;
-    margin-left: -5px;
+    width: 250px;
+    height: 2000px;
     margin-top: -10px;
+    margin-bottom: -50px;
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: #FF6A6A;
+    z-index: 2;
 }
 
 .confira{
-    margin-left: 750px;
-    margin-top: 250px;
+    position: absolute;
+    left: 530px;
+    top: 300px;
+    font-size: 60px;
     color: rgb(236, 236, 231);
 }
 
 .peca {
+    font-size: 15px;
     color: black;
     margin-top: 20px;
+    z-index: 1;
 }
 
 .peca:hover {
@@ -60,12 +62,15 @@ a {
 }
 
 .itemMenu {
-    margin-left: 90%;
+    position: absolute;
+    right: 30px;
+    font-size: 15px;
+    top: 13px;
 }
 
 h1 {
     font-weight: 800;
-    font-size: 90px;
+    font-size: 40px;
     margin-top: -50px;
     margin-bottom: 80px;
 }
@@ -73,39 +78,52 @@ h1 {
 .linha {
     background-color: #7e0000;
     margin-top: -70px;
-    width: 577px;
+    width: 370px;
     height: 2px;
 }
 
 .titulo{
-    margin-top: 35px;
-    margin-left: 610px;
-    font-size: 80px;
+    position: absolute;
+    top: -5px;
+    left: 420px;
+    font-size: 60px;
     color:beige;
 }
 
 .pecaimagem{
-    height: 250px;
-    width: 440px;
-    margin-left: 660px;
+    height: 180px;
+    width: 300px;
     border: 2px solid white;
     border-radius: 20px;
+    position: absolute;
+    left: 450px;
+    top: 170px;
 }
 
 .sinopse{
     color:beige;
-    width:  720px;
+    width:  490px;
     height: 400px;
-    font-size: 24px;
+    font-size: 17px;
     font-family: "Work Sans", sans-serif;
     text-align: justify;
-    margin-left: 1180px;
-    margin-top: -250px;
+    position: absolute;
+    left: 800px;
+    top: 160px;
+}
+
+.pecaInfo{
+    color: beige;
+    font-size: 18px;
+    position: absolute;
+    left: 450px;
+    top: 400px;
 }
 
 table {
     border-collapse: collapse;
-    margin-top: -90px;
+    position: absolute;
+    top: 630px;
 }
 
 table, th,td, tr {
@@ -113,11 +131,39 @@ table, th,td, tr {
   color: beige;
   padding: 15px;
   border: 0.5px solid rgb(214, 214, 214);
-  margin-left: 650px;
-  width: 1220px;
+  left: 450px;
+  width: 800px;
   text-align: center;
 }
 
 th{
     background-color: black;
+}
+
+input{
+    position: absolute;
+    left: 450px;
+    top: 1550px;
+    width: 795px;
+    height: 70px;
+    border-radius: 10px;
+    border: none;
+    background-color:rgb(66, 66, 66);
+    color:beige;
+    font-family: "Work Sans", sans-serif;
+}
+
+
+button{
+    position: absolute;
+    right: 65px;
+    top: 1650px;
+    border-radius: 10px;
+    padding: 10px 15px;
+    font-family: "Work Sans", sans-serif;
+    color:#FF6A6A;
+    background-color: rgb(66, 66, 66);
+}
+button:hover{
+    cursor: pointer;
 }

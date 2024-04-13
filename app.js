@@ -8,7 +8,10 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var avioesdepapelRouter = require("./routes/avioesdepapel");
 var amortesalvaRouter = require("./routes/amortesalva");
+var sinaRouter = require("./routes/sina");
 var pecasanterioresRouter = require("./routes/pecasanteriores");
+var raizIgnoRouter = require("./routes/raizesdaignorancia");
+var lindasRouter = require("./routes/lindasdemorrer");
 
 var app = express();
 
@@ -27,6 +30,9 @@ app.use('/users', usersRouter);
 app.use("/pecasanteriores/avioesdepapel", avioesdepapelRouter);
 app.use("/pecasanteriores/amortesalva", amortesalvaRouter);
 app.use("/pecasanteriores", pecasanterioresRouter);
+app.use("/pecasanteriores/sina", sinaRouter);
+app.use("/pecasanteriores/raizesdaignorancia", raizIgnoRouter);
+app.use("/pecasanteriores/lindasdemorrer", lindasRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
