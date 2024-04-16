@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Micro+5&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Tilt+Neon&display=swap');
+
+body{
+    background: rgb(255,130,130);
+    background: linear-gradient(45deg, rgba(255,130,130,1) 0%, rgba(145,187,251,1) 75%);
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+*{
+    margin: 0;
+    box-sizing: border-box;  
+}
+
+
+.container{
+     padding: 10px;
+     width: 430px;
+     height: 420px;
+     border-radius: 20px;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     background-color: rgb(51, 51, 51);
+     border: 2px solid #FFFCBD;
+}
+
+h2{
+  font-size: 40px;
+  margin-top: 10px;  
+  margin-bottom: -40px;
+  color:rgb(255, 255, 255);
+  opacity:0.9;
+  font-family: "Tilt Neon", sans-serif;
+}
+
+form{
+    margin-top: 10px;
+    margin-right: 50px;
+    width: 250px; 
+}
+
+#CadButton{
+    padding: 10px 10px 10px 10px;
+    width: 100px;
+    margin-top: 25px;
+    border-radius: 30px;
+    font-family: "Lexend", sans-serif;
+    border: 2px solid rgba(145,187,251,1);
+    color:rgb(255,130,130);
+    background-color: rgb(12, 32, 41);
+    text-align: center;
+}
+
+#CadButton:hover{
+    border-color: rgb(6, 106, 255);
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+input{
+  background-color: rgb(12, 32, 41);
+  border-radius: 30px;
+  width: 300px;
+  padding: 10px 25px;
+  margin-top: 50px;
+  border-color: 2px solid rgba(145,187,251,1);
+  color:rgb(205, 212, 173);
+  font-family: "Lexend", sans-serif;
+}
+
+input[type=text]{
+    margin-top: 70px;
+    color:rgb(205, 209, 185)
+}
+
+::placeholder{
+    color: rgb(255,130,130);
+    opacity: 0.6;
+}
+
+input:hover{
+    border-color: rgba(145,187,251,1);
+    transition: 0.5s;
+}
+
+

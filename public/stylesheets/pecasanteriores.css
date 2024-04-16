@@ -6,34 +6,31 @@ html {
     font-family: "Work Sans", sans-serif;
 }
 
-body{
- resize: none;
-}
-
 header {
     background-color: #FFFCBD;
     position: absolute;
-    width: 900px;
+    width: 930px;
     left: 378.3px;
-    height: -20px;
+    height: -10px;
     top: 0px;
     padding: 20px;
     color: #DDAC00;
 }
 
 a {
-    color: #c09805;
+    color: black;
     font-weight: 600;
     font-size: 25px;
     text-decoration: none;
 }
 
 .container {
+    position: relative;
     padding: 60px;
     width: 250px;
-    height: 2000px;
+    height: 300vh;
     margin-top: -10px;
-    margin-bottom: -50px;
+    margin-bottom: -70px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -65,7 +62,8 @@ a {
     position: absolute;
     right: 30px;
     font-size: 15px;
-    top: 13px;
+    top: -2px;
+    font-weight: 600;
 }
 
 h1 {
@@ -81,6 +79,15 @@ h1 {
     width: 370px;
     height: 2px;
 }
+
+.linha2 {
+    color: beige;
+    background-color: rgba(245, 245, 220, 0.863);
+    margin-top: -70px;
+    width: 200px;
+    height: 2px;
+}
+
 
 .titulo{
     position: absolute;
@@ -141,29 +148,36 @@ th{
 }
 
 input{
-    position: absolute;
-    left: 450px;
-    top: 1550px;
-    width: 795px;
-    height: 70px;
+    position: relative;
+    left: 800px;
+    bottom: 60px;
+    width: 170px;
+    height: 60px;
     border-radius: 10px;
     border: none;
     background-color:rgb(66, 66, 66);
     color:beige;
     font-family: "Work Sans", sans-serif;
+    font-size: 20px;
+    text-align: center;
 }
 
-
-button{
-    position: absolute;
-    right: 65px;
-    top: 1650px;
-    border-radius: 10px;
-    padding: 10px 15px;
+BUTTON{
+    position: relative;
+    left: 1100px;
+    bottom: 100px;
+    border-radius: 15px;
+    padding: 5px;
     font-family: "Work Sans", sans-serif;
-    color:#FF6A6A;
-    background-color: rgb(66, 66, 66);
+    background-color: #FF6A6A;
 }
-button:hover{
-    cursor: pointer;
+
+.avMedia{
+  position: absolute;
+  right: 600px;
+  bottom: -1070px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
 }
+
