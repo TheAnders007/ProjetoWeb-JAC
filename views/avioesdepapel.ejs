@@ -2,7 +2,7 @@
 
   <p class="titulo"> Aviões de Papel </p>
 
-    <a href="https://www.youtube.com/watch?v=3PbJPqNQYTs"> <img class="pecaimagem" src="/images/avioesdepapel.jpeg"> </a>
+    <a href="https://www.youtube.com/watch?v=3PbJPqNQYTs" title="Clique aqui para ver a peça"> <img class="pecaimagem" src="/images/avioesdepapel.jpeg"> </a>
     
     <p class="sinopse"> 
         ⠀⠀Aviões de Papel é uma peça teatral que transcende as limitações do tempo,
@@ -131,23 +131,20 @@
 
       </table>
       
-      <style> .container{height: 2040px; margin-bottom: -100px;} .avMedia{bottom:-1500px;} </style>
+      <style> .container{height: 2100px; margin-bottom: -90px;} .avMedia{bottom:-1500px;} </style>
 
       <div class="avMedia"> 
+        <p id="resultadoMedia"> </p>
         <p class="linha2"> Avaliação Média </p>
       </div>
 
-      <form>
-        <label> Diga sua nota </label>
-        <input id="notaAvioes" type="number" placeholder="Dê a sua nota">
+      <form id="notaForm">
+        <label for="notaAvioes">Diga sua nota:</label>
+        <input id="notaAvioes" type="number" placeholder="Dê a sua nota"  min="0" max="10" required>
+        <button type="submit">ENVIAR</button>
       </form>
 
-      <button>
-        ENVIAR
-      </button>
-
-      
-
+    <script src="/javascripts/avioesbd.js"></script>
   </body>
 
   </html>

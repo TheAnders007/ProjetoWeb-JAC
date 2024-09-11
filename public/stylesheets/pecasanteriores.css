@@ -6,31 +6,35 @@ html {
     font-family: "Work Sans", sans-serif;
 }
 
+body {
+    margin: 0;
+    padding: 0;
+}
+
 header {
     background-color: #FFFCBD;
     position: absolute;
-    width: 930px;
-    left: 378.3px;
-    height: -10px;
+    width: 78%;
+    left: 20%;
+    height: 1.5%;
     top: 0px;
-    padding: 20px;
-    color: #DDAC00;
+    padding: 1.0%;
 }
+
 
 a {
     color: black;
     font-weight: 600;
-    font-size: 25px;
+    font-size: 1vw;
     text-decoration: none;
 }
 
 .container {
     position: relative;
-    padding: 60px;
-    width: 250px;
+    padding: 4% 3%;
+    width: 17%;
     height: 300vh;
-    margin-top: -10px;
-    margin-bottom: -70px;
+    margin-top: -1%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -38,16 +42,9 @@ a {
     z-index: 2;
 }
 
-.confira{
-    position: absolute;
-    left: 530px;
-    top: 300px;
-    font-size: 60px;
-    color: rgb(236, 236, 231);
-}
 
 .peca {
-    font-size: 15px;
+    font-size: 1.2vw;;
     color: black;
     margin-top: 20px;
     z-index: 1;
@@ -61,86 +58,101 @@ a {
 .itemMenu {
     position: absolute;
     right: 30px;
-    font-size: 15px;
+    font-size: 1.05vw;
     top: -2px;
     font-weight: 600;
+    color: #b38c00;
 }
 
 h1 {
     font-weight: 800;
-    font-size: 40px;
-    margin-top: -50px;
-    margin-bottom: 80px;
+    font-size: 3vw;
+    margin-top: -30%;
+    margin-bottom: 5%;
+}
+
+.confira{
+    position: absolute;
+    left: 530px;
+    top: 650px;
+    font-size: 60px;
+    color: rgb(236, 236, 231);
 }
 
 .linha {
     background-color: #7e0000;
-    margin-top: -70px;
-    width: 370px;
-    height: 2px;
+    top: 10%;
+    width: 130%;
+    height: 0.1%;
+    z-index: 2;
 }
 
 .linha2 {
     color: beige;
+    position: relative;
     background-color: rgba(245, 245, 220, 0.863);
     margin-top: -70px;
+    margin-bottom: 100px;
     width: 200px;
     height: 2px;
+    font-size: 2.5vh;
 }
 
 
 .titulo{
     position: absolute;
-    top: -5px;
-    left: 420px;
-    font-size: 60px;
+    top: 5px;
+    left: 27%;
+    font-size: 4.5vw;
     color:beige;
 }
 
 .pecaimagem{
-    height: 180px;
-    width: 300px;
+    height: 35%;
+    width: 29%;
     border: 2px solid white;
     border-radius: 20px;
     position: absolute;
-    left: 450px;
-    top: 170px;
+    left: 27%;
+    top: 27%;
 }
 
 .sinopse{
     color:beige;
-    width:  490px;
-    height: 400px;
-    font-size: 17px;
+    width:  40%;
+    height: 23%;
+    font-size: 1.3vw;
     font-family: "Work Sans", sans-serif;
     text-align: justify;
     position: absolute;
-    left: 800px;
-    top: 160px;
+    left: 58.5%;
+    top: 27%;
 }
 
 .pecaInfo{
     color: beige;
-    font-size: 18px;
+    font-size: 1.3vw;
     position: absolute;
-    left: 450px;
-    top: 400px;
+    left: 27%;
+    top: 65%;
 }
 
 table {
     border-collapse: collapse;
     position: absolute;
-    top: 630px;
+    top: 95%;
 }
 
 table, th,td, tr {
   font-family: "Work Sans", sans-serif;
   color: beige;
-  padding: 15px;
+  padding: 2%;
   border: 0.5px solid rgb(214, 214, 214);
-  left: 450px;
-  width: 800px;
+  left: 33%;
+  width: 57%;
   text-align: center;
+  margin-bottom: 50%;
+  font-size: 1.2vw;
 }
 
 th{
@@ -149,7 +161,7 @@ th{
 
 input{
     position: relative;
-    left: 800px;
+    left: 59%;
     bottom: 60px;
     width: 170px;
     height: 60px;
@@ -164,8 +176,8 @@ input{
 
 BUTTON{
     position: relative;
-    left: 1100px;
-    bottom: 100px;
+    left: 61%;
+    bottom: 60px;
     border-radius: 15px;
     padding: 5px;
     font-family: "Work Sans", sans-serif;
@@ -174,10 +186,21 @@ BUTTON{
 
 .avMedia{
   position: absolute;
-  right: 600px;
+  right: 45%;
   bottom: -1070px;
   display: flex;
   flex-direction: column;
   text-align: center;
+  margin: 0 auto;
 }
+
+#resultadoMedia{
+    position:relative;
+    color: beige;
+    left: 34%;
+    font-size: 4vh;
+    text-align: center;
+    width: 5%;
+    bottom: 50px;
+} 
 

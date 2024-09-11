@@ -6,35 +6,43 @@ html{
     font-family: "Work Sans", sans-serif;
     background: rgb(255,130,130);
     background: linear-gradient(45deg, rgba(255,130,130,1) 0%, rgba(145,187,251,1) 75%);
-    
 }
 
+
 header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     background-color: #FFFCBD;
-    width: 1335px;
+    width: 100.66%;
     margin-top: -10px;
-    margin-left: -10px;
-    margin-right: -10px;
     padding: 5px;
 }
 
 a{
     color: #DDAC00;
     font-weight: 600;
-    font-size: 15px;
+    font-size: 1vw;
 }
 
 .itemMenu{
-    margin-left: 370px;
+    margin-left: 30%;
+}
+
+.tela{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 H1{
     text-align: center;
-    font-size: 60px;
+    font-size: 4.8vw;
     margin-top: 30px;
     font-family: "Tilt Neon", sans-serif;
     transition: 2s;
 }
+
 h1:hover{
     color:beige;
     transition:1s;
@@ -42,16 +50,14 @@ h1:hover{
 }
 
 img{
-    position: absolute;
-    left: 510px;
-    margin-top: 10px;
     width: 23%;
+    max-width: 100%;
+    margin-bottom: 11%;
 }
 
 p{
     font-family: "Lexend", sans-serif;
     text-align: center;
-    margin-top: 490px;
     font-weight: 700;
-    font-size: 13px;
+    font-size: 1vw;
 }
