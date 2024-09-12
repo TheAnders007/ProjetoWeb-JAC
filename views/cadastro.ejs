@@ -14,13 +14,13 @@
 
         <h2> CADASTRO </h2>
          
-        <form id="login">
-            <input type="text" placeholder="Nome de Usuário">
-            <input type="password" placeholder="Senha">
-            <input type="password" placeholder="Confirmar Senha">
+        <form id="cadastro" action="/register" method="post">
+            <input type="text" name="username" placeholder="Nome de Usuário" required>
+            <input type="text" name="matricula" placeholder="Matrícula" required>
+            <input type="password" name="password" placeholder="Senha" required>
+            <input type="password" name="confirmPassword" placeholder="Confirmar Senha" required>
+            <a href="/"> <button type="submit" id="CadButton"> <p> CADASTRAR </p> </button> </a>
         </form>
-
-        <a href="/"> <button id="CadButton"> <p> CADASTRAR </p> </button> </a>
 
   </div>
 </body>

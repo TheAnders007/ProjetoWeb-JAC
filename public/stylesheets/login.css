@@ -40,8 +40,10 @@ h2{
 
 form{
     margin-top: 10px;
-    margin-right: 50px;
     width: 250px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #LoginButton{
@@ -67,15 +69,10 @@ input{
   border-radius: 30px;
   width: 300px;
   padding: 10px 25px;
-  margin-top: 50px;
+  margin-top: 30px;
   border-color: 2px solid rgba(145,187,251,1);
   color:rgb(205, 212, 173);
   font-family: "Lexend", sans-serif;
-}
-
-input[type=text]{
-    margin-top: 70px;
-    color:rgb(205, 209, 185)
 }
 
 ::placeholder{
@@ -95,9 +92,13 @@ p{
   font-size: 13px;
   margin-top: 15px;
   opacity: 0.8;
-  margin-right: 139px;
+  margin-right: 5px;
 }
 
 p:hover{
     opacity: 1;
+}
+
+a{
+    text-decoration: none;
 }

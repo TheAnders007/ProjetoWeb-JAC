@@ -14,14 +14,14 @@
 
         <h2> LOGIN </h2>
          
-        <form id="loginForm">
-            <input type="text" placeholder="Usuário">
-            <input type="password" placeholder="Senha">
+        <form id="loginForm" action="/login" method="post">
+            <input type="text" name="username" placeholder="Usuário" required>
+            <input type="text" name="matricula" placeholder="Matrícula" required>
+            <input type="password" name="password" placeholder="Senha" required>
+            <button type="submit" id="LoginButton"> LOGIN </button>
         </form>
-        
-        <a href="/cadastro"> <p> Ainda não tem conta? </p> </a>
 
-        <a href="/"> <button id="LoginButton"> LOGIN </button> </a>
+        <a href="/cadastro"> <p> Ainda não tem conta? </p> </a>
 
   </div>
 </body>

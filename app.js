@@ -1,9 +1,13 @@
+require('dotenv').config();
+
 var createError = require('http-errors');
 var express = require('express');
+const bcrypt = require('bcrypt');
 var path = require('path');
 const sqlite3 = require('sqlite3').verbose();
 const bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
+const session = require('express-session');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
@@ -19,13 +23,119 @@ var cadastroRouter = require("./routes/cadastro");
 
 var app = express();
 
+const saltRounds = 10;
 
-// Configuração do banco de dados SQLite
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.static('public'));
+
+app.use(session({
+    secret: process.env.SESSION_SECRET, 
+    resave: false,
+    saveUninitialized: true
+}));
+
+//Configuração do banco de dados para registrar alunos
+
+const dbalunos = new sqlite3.Database('./cadastro.db', (err) => {
+    if (err) {
+        console.error('Erro ao conectar ao banco de dados dos alunos:', err.message);
+    } else {
+        console.log('Conectado ao banco de dados dos usuários!!');
+    }
+});
+
+dbalunos.serialize(() => {
+    dbalunos.run(`CREATE TABLE IF NOT EXISTS alunos (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        username TEXT NOT NULL,
+        matricula TEXT NOT NULL UNIQUE,
+        password TEXT NOT NULL
+    )`);
+});
+
+// Middleware de depuração para verificar o corpo da requisição
+app.use((req, res, next) => {
+    console.log('Request Body:', req.body);
+    next();
+});
+
+app.post('/register', (req, res) => {
+    const { username, matricula, password, confirmPassword } = req.body;
+
+    // Verifique se as senhas coincidem
+    if (password !== confirmPassword) {
+        return res.status(400).render('As senhas não coincidem!');
+    }
+
+    bcrypt.hash(password, saltRounds, (err, hash) => {
+        if (err) {
+            return res.status(500).send('Erro ao criar hash da senha!');
+        }
+
+    // Crie um novo usuário no banco de dados
+    const stmt = dbalunos.prepare('INSERT INTO alunos (username, matricula, password) VALUES (?, ?, ?)');
+    stmt.run(username, matricula, hash, function(err) {
+        if (err) {
+            return res.status(500).send('Erro ao cadastrar usuário!');
+        }
+        console.log('Cadastro realizado com sucesso!');
+    });
+    stmt.finalize();
+});
+});
+
+app.post('/login', (req, res) => {
+    const { username, password } = req.body;
+
+    console.log('Request Body:', req.body); 
+    console.log('Username:', username);
+    console.log('Password:', password);
+
+    dbalunos.get('SELECT * FROM alunos WHERE username = ?', [username], (err, row) => {
+        if (err) {
+            return res.status(500).send('Erro ao verificar usuário!');
+        }
+
+        console.log('DB Row:', row);
+
+        if (row) {
+            bcrypt.compare(password, row.password, (err, result) => {
+               if (err) {
+                    return res.status(500).send('Erro ao comparar senha!');
+                }
+
+                console.log('Password Match:', result);
+
+                if (result) {
+                    req.session.username = username;
+                    res.send('Login bem-sucedido!');
+                } else {
+                    res.status(401).send('Usuário ou senha inválidos!');
+                }
+            });
+        } else {
+            res.status(401).send('Usuário ou senha inválidos!');
+        }
+    });
+});
+
+app.get('/user', (req, res) => {
+    if (req.session.username) {
+        res.json({ username: req.session.username });
+    } else {
+        res.status(401).send('Não autenticado');
+    }
+});
+
+
+// Configuração do banco de dados para inserção das notas
+
 const db = new sqlite3.Database('./jacnotas.db', (err) => {
   if (err) {
-      console.error('Erro ao abrir o banco de dados:', err.message);
+      console.error('Erro ao abrir o banco de dados das avaliações das peças:', err.message);
   } else {
-      console.log('Conectado ao banco de dados SQLite.');
+      console.log('Conectado ao banco de dados das avaliações!!');
   }
 });
 
@@ -36,7 +146,6 @@ db.serialize(() => {
 
 app.use(bodyParser.json());
 app.use(express.static('public'));
-
 
 
 app.post('/api/nota/avioesdepapel', (req, res) => {
@@ -53,6 +162,7 @@ app.post('/api/nota/avioesdepapel', (req, res) => {
 
     stmt.finalize();
 });
+
 
 app.get('/api/media/avioesdepapel', (req, res) => {
   db.get('SELECT AVG(valor) AS media FROM jacnotas WHERE peca = "avioesdepapel"', (err, row) => {
@@ -167,8 +277,6 @@ db.get('SELECT AVG(valor) AS media FROM jacnotas WHERE peca = "lindas de morrer"
 });
 
 
-
-// view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 

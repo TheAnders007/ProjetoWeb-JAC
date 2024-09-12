@@ -1,8 +1,55 @@
-<%- include('./partials/headerPeca') %>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> JAC - Peças Anteriores </title>
+    <link rel="stylesheet" href="/stylesheets/pecasanteriores.css">
+    <link rel="shortcut icon" type="imagex/png" href="/images/iconJac.ico">
+</head>
+
+<body>
+
+
+    <div class="container">
+        <a href="/pecasanteriores"> <h1 id="topo"> Menu de Peças </h1> </a>
+        <style> #topo{font-size: 4vh; bottom: 50%; margin-top: -10%;} .linha{margin-top: 1%; height: 0.2%;} </style>
+        <p class="linha"> </p>
+          <a href="/pecasanteriores/avioesdepapel" class="peca"> 2023 </a>
+          <a href="/pecasanteriores" class="peca"> 2022 </a>
+    </div>
+
+    <header>
+        <p id="boas-vindas" class="itemMenu"> Olá! Venha saber mais sobre as peças clicando no menu da esquerda! </p>
+    </header>
+    
+    <script> 
+
+document.addEventListener('DOMContentLoaded', async () => { 
+    try {
+        const response = await fetch('/user');
+        if (response.ok) {
+            const { username } = await response.json();
+            const greetingElement = document.getElementById('boas-vindas');
+            if (greetingElement) {
+                greetingElement.textContent = `Olá, ${username}! Venha saber mais sobre as peças clicando no menu da esquerda!`;
+            }
+        } else {
+            console.error('Não foi possível obter o nome do usuário');
+        }
+    } catch (error) {
+        console.error('Erro ao obter o nome do usuário:', error);
+    }
+});
+
+  </script>
+
 
 <h1 class="confira"> ⬅ Confira as peças de 2023!! </h1>
 
-<style> .container{height: 540px; margin-bottom: -10px;}</style>
+<style> .container{height: 86vh; margin-bottom: -10px;}</style>
 
 </body>
 
