@@ -11,7 +11,6 @@ const session = require('express-session');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 var avioesdepapelRouter = require("./routes/avioesdepapel");
 var amortesalvaRouter = require("./routes/amortesalva");
 var sinaRouter = require("./routes/sina");
@@ -54,9 +53,9 @@ dbalunos.serialize(() => {
     )`);
 });
 
-// Middleware de depuração para verificar o corpo da requisição
+// Middleware para verificar o corpo de requisição
 app.use((req, res, next) => {
-    console.log('Request Body:', req.body);
+    console.log('Corpo de Requisição:', req.body);
     next();
 });
 
@@ -77,9 +76,25 @@ app.post('/register', (req, res) => {
     const stmt = dbalunos.prepare('INSERT INTO alunos (username, matricula, password) VALUES (?, ?, ?)');
     stmt.run(username, matricula, hash, function(err) {
         if (err) {
-            return res.status(500).send('Erro ao cadastrar usuário!');
+            console.error('Erro ao cadastrar usuário:', err.message); 
+            return res.status(500).send(`Erro ao cadastrar usuário: ${err.message}`);
         }
-        console.log('Cadastro realizado com sucesso!');
+        res.send(`
+        <html>
+        <head>
+            <style>
+                @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');  
+
+                body { font-family: Arial, sans-serif; background: rgb(255,130,130); background: linear-gradient(45deg, rgba(255,130,130,1) 0%, rgba(145,187,251,1) 75%); display: flex; align-items: center; justify-content: center;
+                }
+                .msg { font-size: 18px;  font-family: "Lexend", sans-serif; color: beige}
+            </style>
+        </head>
+        <body>
+            <p class="msg">Cadastro realizado!</p>
+        </body>
+        </html>
+    `); 
     });
     stmt.finalize();
 });
@@ -120,6 +135,14 @@ app.post('/login', (req, res) => {
     });
 });
 
+function isAuthenticated(req, res, next) {
+    if (req.session && req.session.username) {
+        return next(); 
+    } else {
+        res.status(401).send('Você precisa estar logado para acessar esta página.');
+    }
+}
+
 app.get('/user', (req, res) => {
     if (req.session.username) {
         res.json({ username: req.session.username });
@@ -127,6 +150,18 @@ app.get('/user', (req, res) => {
         res.status(401).send('Não autenticado');
     }
 });
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // Configuração do banco de dados para inserção das notas
@@ -139,6 +174,9 @@ const db = new sqlite3.Database('./jacnotas.db', (err) => {
   }
 });
 
+
+
+
 // Criação da tabela de notas, se não existir
 db.serialize(() => {
   db.run('CREATE TABLE IF NOT EXISTS jacnotas (id INTEGER PRIMARY KEY AUTOINCREMENT, valor INTEGER, peca TEXT)');
@@ -147,14 +185,13 @@ db.serialize(() => {
 app.use(bodyParser.json());
 app.use(express.static('public'));
 
-
-app.post('/api/nota/avioesdepapel', (req, res) => {
+app.post('/api/nota/avioesdepapel', isAuthenticated, (req, res) => {
     const { nota } = req.body;
     const stmt = db.prepare('INSERT INTO jacnotas (valor, peca) VALUES (?, "avioesdepapel")');
     
     stmt.run(nota, function(err) {
         if (err) {
-            res.status(500).send('Erro ao salvar a nota');
+            res.status(500).send('Erro ao salvar a nota!');
             return;
         }
         res.status(200).send('Nota salva com sucesso!');
@@ -174,7 +211,7 @@ app.get('/api/media/avioesdepapel', (req, res) => {
   });
 });
 
-app.post('/api/nota/amortesalva', (req, res) => {
+app.post('/api/nota/amortesalva', isAuthenticated, (req, res) => {
   const { nota } = req.body;
   const stmt = db.prepare('INSERT INTO jacnotas (valor, peca) VALUES (?, "amortesalva")');
   
@@ -200,7 +237,7 @@ db.get('SELECT AVG(valor) AS media FROM jacnotas WHERE peca = "amortesalva"', (e
 });
 
 
-app.post('/api/nota/sina', (req, res) => {
+app.post('/api/nota/sina', isAuthenticated, (req, res) => {
   const { nota } = req.body;
   const stmt = db.prepare('INSERT INTO jacnotas (valor, peca) VALUES (?, "sina")');
   
@@ -226,7 +263,7 @@ db.get('SELECT AVG(valor) AS media FROM jacnotas WHERE peca = "sina"', (err, row
 });
 
 
-app.post('/api/nota/raizes', (req, res) => {
+app.post('/api/nota/raizes', isAuthenticated, (req, res) => {
   const { nota } = req.body;
   const stmt = db.prepare('INSERT INTO jacnotas (valor, peca) VALUES (?, "raizes da ignorancia")');
   
@@ -251,7 +288,7 @@ db.get('SELECT AVG(valor) AS media FROM jacnotas WHERE peca = "raizes da ignoran
 });
 });
 
-app.post('/api/nota/lindasdemorrer', (req, res) => {
+app.post('/api/nota/lindasdemorrer', isAuthenticated, (req, res) => {
   const { nota } = req.body;
   const stmt = db.prepare('INSERT INTO jacnotas (valor, peca) VALUES (?, "lindas de morrer")');
   
@@ -277,6 +314,14 @@ db.get('SELECT AVG(valor) AS media FROM jacnotas WHERE peca = "lindas de morrer"
 });
 
 
+
+
+
+
+
+
+
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
@@ -287,7 +332,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 app.use("/pecasanteriores/avioesdepapel", avioesdepapelRouter);
 app.use("/pecasanteriores/amortesalva", amortesalvaRouter);
 app.use("/pecasanteriores", pecasanterioresRouter);
@@ -296,6 +340,15 @@ app.use("/pecasanteriores/raizesdaignorancia", raizIgnoRouter);
 app.use("/pecasanteriores/lindasdemorrer", lindasRouter);
 app.use("/login", loginRouter);
 app.use("/cadastro", cadastroRouter);
+
+
+
+
+
+
+
+
+
 
 
 

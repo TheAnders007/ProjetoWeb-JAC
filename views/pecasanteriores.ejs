@@ -15,39 +15,33 @@
 
     <div class="container">
         <a href="/pecasanteriores"> <h1 id="topo"> Menu de Peças </h1> </a>
-        <style> #topo{font-size: 4vh; bottom: 50%; margin-top: -10%;} .linha{margin-top: 1%; height: 0.2%;} </style>
+        <style> #topo{font-size: 4vh; bottom: 50%; margin-top: -13%;} .linha{margin-top: 1%; height: 0.2%;} </style>
         <p class="linha"> </p>
-          <a href="/pecasanteriores/avioesdepapel" class="peca"> 2023 </a>
-          <a href="/pecasanteriores" class="peca"> 2022 </a>
+          <a href="/pecasanteriores/avioesdepapel" class="peca"> 2023 (X JAC) </a>
+          <a href="/pecasanteriores" class="peca"> 2022 (IX JAC)</a>
+          <a href="/pecasanteriores" class="peca"> 2018 (VIII JAC)</a>
+          <a href="/pecasanteriores" class="peca"> 2018 (VII JAC)</a>
+          <a href="/pecasanteriores" class="peca"> 2017 (VI JAC)</a>
+          <a href="/pecasanteriores" class="peca"> 2016 (V JAC)</a>
+          <a href="/pecasanteriores" class="peca"> 2014 (IV JAC)</a>
+          <a href="/pecasanteriores" class="peca"> 2013 (III JAC)</a>
+          <a href="/pecasanteriores" class="peca"> 2012 (II JAC)</a>
+          <a href="/pecasanteriores" class="peca"> 2012 (I JAC)</a>
     </div>
 
     <header>
         <p id="boas-vindas" class="itemMenu"> Olá! Venha saber mais sobre as peças clicando no menu da esquerda! </p>
     </header>
     
-    <script> 
-
-document.addEventListener('DOMContentLoaded', async () => { 
-    try {
-        const response = await fetch('/user');
-        if (response.ok) {
-            const { username } = await response.json();
-            const greetingElement = document.getElementById('boas-vindas');
-            if (greetingElement) {
-                greetingElement.textContent = `Olá, ${username}! Venha saber mais sobre as peças clicando no menu da esquerda!`;
-            }
-        } else {
-            console.error('Não foi possível obter o nome do usuário');
-        }
-    } catch (error) {
-        console.error('Erro ao obter o nome do usuário:', error);
-    }
-});
-
-  </script>
+    <script src="/javascripts/boasvindas.js"> </script>
 
 
-<h1 class="confira"> ⬅ Confira as peças de 2023!! </h1>
+<h1 class="confira"> ⬅ Confira as peças anteriores!! </h1>
+
+<footer> 
+    <a class="rede" href="https://www.instagram.com/jac.ifcefortaleza/"> <img src="/images/insta-icon.svg"> </a>
+    <a class="rede" href="https://www.youtube.com/@mostrainterdisciplinarjuv"> <img src="/images/yout-icon.svg"> </a>
+</footer>
 
 <style> .container{height: 86vh; margin-bottom: -10px;}</style>
 
