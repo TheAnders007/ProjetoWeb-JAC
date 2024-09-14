@@ -25,17 +25,23 @@ header {
 footer{
     position: absolute;
     background-color: #7472d6;
-    border:rgb(0, 2, 116);
-    width: 78vw;
-    left: 20%;
-    height: 0.8%;
-    top: 95vh;
+    border-color: 2px solid rgb(0, 2, 116);
+    width: 100vw;
+    left: -2%;
+    height: 0.4%;
     padding: 1%;
-    bottom: 5vh;
+    bottom: 0.4vh;
     display: flex;
     flex-direction: row;
     justify-content: end;
     align-items: flex-end;
+}
+
+.rede{
+    font-size: 0.5vw;
+    margin-bottom: -0.9vh;
+    margin-right: 0.8vw;
+    margin-left: 0.2vw;
 }
 
 
@@ -59,17 +65,12 @@ a {
     z-index: 3;
 }
 
-
-h2{
+#casa{
     position: absolute;
-    font-size: 2vh;
-    bottom: 0.1vh;
-    left: 65vw;
-}
-.rede{
-    font-size: 0.5vw;
-    margin-bottom: -0.7vh;
-    margin-right: 0.8vw;
+    top: 1vh;
+    left: 4.3vw;
+    width: 4vh;
+    z-index: 2;
 }
 
 
@@ -246,4 +247,3 @@ BUTTON{
     width: 5%;
     bottom: 13vh;
 } 
-

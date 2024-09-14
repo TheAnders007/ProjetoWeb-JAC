@@ -30,10 +30,40 @@
     </div>
 
     <header>
+        <a href="/"> <img src="/images/retorno.png" id="casa"> </a>
         <p id="boas-vindas" class="itemMenu"> Olá! Venha saber mais sobre as peças clicando no menu da esquerda! </p>
     </header>
     
     <script src="/javascripts/boasvindas.js"> </script>
+
+    <div class="pesquisa">
+        <input id="campo_pesquisa" type="text" placeholder="Pesquise o nome de uma peça">
+        <img src="/images/lupa.png" id="procurar">
+    </div>
+
+    <style>
+        #campo_pesquisa{
+            top: 13vh;
+            left: 40%;
+            width: 40vw;
+            height: 3.5vh;
+            border-radius: 10px;
+            background-color:rgb(199, 199, 199);
+            border: 1px solid rgb(255, 218, 124);
+            font-size: 2.5vh;
+            color:black;
+        }
+        #campo_pesquisa::placeholder{
+            font-size: 2.5vh;
+        }
+        #procurar{
+            position: absolute;
+            left: 83%;
+            height: 4.5vh;
+            top: 13vh;
+
+        }
+    </style>
 
 
 <h1 class="confira"> ⬅ Confira as peças anteriores!! </h1>

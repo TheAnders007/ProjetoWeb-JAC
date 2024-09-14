@@ -36,16 +36,16 @@ app.use(session({
 
 //Configuração do banco de dados para registrar alunos
 
-const dbalunos = new sqlite3.Database('./cadastro.db', (err) => {
+const dbjac = new sqlite3.Database('./sitejac.db', (err) => {
     if (err) {
         console.error('Erro ao conectar ao banco de dados dos alunos:', err.message);
     } else {
-        console.log('Conectado ao banco de dados dos usuários!!');
+        console.log('Conectado ao banco de dados!!');
     }
 });
 
-dbalunos.serialize(() => {
-    dbalunos.run(`CREATE TABLE IF NOT EXISTS alunos (
+dbjac.serialize(() => {
+    dbjac.run(`CREATE TABLE IF NOT EXISTS alunos (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         username TEXT NOT NULL,
         matricula TEXT NOT NULL UNIQUE,
@@ -73,7 +73,7 @@ app.post('/register', (req, res) => {
         }
 
     // Crie um novo usuário no banco de dados
-    const stmt = dbalunos.prepare('INSERT INTO alunos (username, matricula, password) VALUES (?, ?, ?)');
+    const stmt = dbjac.prepare('INSERT INTO alunos (username, matricula, password) VALUES (?, ?, ?)');
     stmt.run(username, matricula, hash, function(err) {
         if (err) {
             console.error('Erro ao cadastrar usuário:', err.message); 
@@ -101,13 +101,14 @@ app.post('/register', (req, res) => {
 });
 
 app.post('/login', (req, res) => {
-    const { username, password } = req.body;
+    const { username, matricula, password } = req.body;
 
     console.log('Request Body:', req.body); 
     console.log('Username:', username);
+    console.log('Matrícula:', matricula);
     console.log('Password:', password);
 
-    dbalunos.get('SELECT * FROM alunos WHERE username = ?', [username], (err, row) => {
+    dbjac.get('SELECT * FROM alunos WHERE username = ? AND matricula = ?', [username, matricula], (err, row) => {
         if (err) {
             return res.status(500).send('Erro ao verificar usuário!');
         }
@@ -124,13 +125,27 @@ app.post('/login', (req, res) => {
 
                 if (result) {
                     req.session.username = username;
-                    res.send('Login bem-sucedido!');
+                    req.session.matricula = matricula;
+                    res.send(`<html>
+                        <head>
+                            <style>
+                                @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');  
+                
+                                body { font-family: Arial, sans-serif; background: rgb(255,130,130); background: linear-gradient(45deg, rgba(255,130,130,1) 0%, rgba(145,187,251,1) 75%); display: flex; align-items: center; justify-content: center;
+                                }
+                                .msg { font-size: 18px;  font-family: "Lexend", sans-serif; color: beige}
+                            </style>
+                        </head>
+                        <body>
+                            <p class="msg">Login bem-sucedido!</p>
+                        </body>
+                        </html>`);
                 } else {
-                    res.status(401).send('Usuário ou senha inválidos!');
+                    res.status(401).send('Usuário, Matrícula ou senha inválidos!');
                 }
             });
         } else {
-            res.status(401).send('Usuário ou senha inválidos!');
+            res.status(401).send('Usuário, Matrícula ou senha inválidos!');
         }
     });
 });
@@ -158,28 +173,9 @@ app.get('/user', (req, res) => {
 
 
 
-
-
-
-
-
-
-// Configuração do banco de dados para inserção das notas
-
-const db = new sqlite3.Database('./jacnotas.db', (err) => {
-  if (err) {
-      console.error('Erro ao abrir o banco de dados das avaliações das peças:', err.message);
-  } else {
-      console.log('Conectado ao banco de dados das avaliações!!');
-  }
-});
-
-
-
-
 // Criação da tabela de notas, se não existir
-db.serialize(() => {
-  db.run('CREATE TABLE IF NOT EXISTS jacnotas (id INTEGER PRIMARY KEY AUTOINCREMENT, valor INTEGER, peca TEXT)');
+dbjac.serialize(() => {
+  dbjac.run('CREATE TABLE IF NOT EXISTS jacnotas (id INTEGER PRIMARY KEY AUTOINCREMENT, valor INTEGER, peca TEXT, usuario INTEGER)');
 });
 
 app.use(bodyParser.json());
@@ -187,22 +183,41 @@ app.use(express.static('public'));
 
 app.post('/api/nota/avioesdepapel', isAuthenticated, (req, res) => {
     const { nota } = req.body;
-    const stmt = db.prepare('INSERT INTO jacnotas (valor, peca) VALUES (?, "avioesdepapel")');
-    
-    stmt.run(nota, function(err) {
-        if (err) {
-            res.status(500).send('Erro ao salvar a nota!');
-            return;
-        }
-        res.status(200).send('Nota salva com sucesso!');
-    });
+    const mat = req.session.matricula;
 
-    stmt.finalize();
+    dbjac.serialize(() => {
+        dbjac.get('SELECT id FROM jacnotas WHERE peca = "avioesdepapel" AND usuario = ?', [mat], (err, row) => {
+            if (err) {
+                res.status(500).send('Erro ao verificar a nota existente!');
+                return;
+            }
+
+            if (row) {
+                // Atualizar a nota existente
+                dbjac.run('UPDATE jacnotas SET valor = ? WHERE id = ?', [nota, row.id], (err) => {
+                    if (err) {
+                        res.status(500).send(`Erro ao atualizar a nota: ${err.message}`);
+                        return;
+                    }
+                    res.status(200).send('Nota salva com sucesso!');
+                });
+            } else {
+                // Inserir uma nova nota
+                dbjac.run('INSERT INTO jacnotas (valor, peca, usuario) VALUES (?, "avioesdepapel", ?)', [nota, mat], (err) => {
+                    if (err) {
+                        res.status(500).send(`Erro ao salvar a nota: ${err.message}`);
+                        return;
+                    }
+                    res.status(200).send('Nota salva com sucesso!');
+                });
+            }
+        });
+    });
 });
 
 
 app.get('/api/media/avioesdepapel', (req, res) => {
-  db.get('SELECT AVG(valor) AS media FROM jacnotas WHERE peca = "avioesdepapel"', (err, row) => {
+  dbjac.get('SELECT AVG(valor) AS media FROM jacnotas WHERE peca = "avioesdepapel"', (err, row) => {
       if (err) {
           res.status(500).send('Erro ao calcular a média');
           return;
@@ -212,22 +227,41 @@ app.get('/api/media/avioesdepapel', (req, res) => {
 });
 
 app.post('/api/nota/amortesalva', isAuthenticated, (req, res) => {
-  const { nota } = req.body;
-  const stmt = db.prepare('INSERT INTO jacnotas (valor, peca) VALUES (?, "amortesalva")');
-  
-  stmt.run(nota, function(err) {
-      if (err) {
-          res.status(500).send('Erro ao salvar a nota');
-          return;
-      }
-      res.status(200).send('Nota salva com sucesso!');
-  });
+    const { nota } = req.body;
+    const mat = req.session.matricula;
 
-  stmt.finalize();
+    dbjac.serialize(() => {
+        dbjac.get('SELECT id FROM jacnotas WHERE peca = "a morte salva" AND usuario = ?', [mat], (err, row) => {
+            if (err) {
+                res.status(500).send('Erro ao verificar a nota existente!');
+                return;
+            }
+
+            if (row) {
+                // Atualizar a nota existente
+                dbjac.run('UPDATE jacnotas SET valor = ? WHERE id = ?', [nota, row.id], (err) => {
+                    if (err) {
+                        res.status(500).send(`Erro ao atualizar a nota: ${err.message}`);
+                        return;
+                    }
+                    res.status(200).send('Nota salva com sucesso!');
+                });
+            } else {
+                // Inserir uma nova nota
+                dbjac.run('INSERT INTO jacnotas (valor, peca, usuario) VALUES (?, "a morte salva", ?)', [nota, mat], (err) => {
+                    if (err) {
+                        res.status(500).send(`Erro ao salvar a nota: ${err.message}`);
+                        return;
+                    }
+                    res.status(200).send('Nota salva com sucesso!');
+                });
+            }
+        });
+    });
 });
 
 app.get('/api/media/amortesalva', (req, res) => {
-db.get('SELECT AVG(valor) AS media FROM jacnotas WHERE peca = "amortesalva"', (err, row) => {
+dbjac.get('SELECT AVG(valor) AS media FROM jacnotas WHERE peca = "a morte salva"', (err, row) => {
     if (err) {
         res.status(500).send('Erro ao calcular a média');
         return;
@@ -238,22 +272,41 @@ db.get('SELECT AVG(valor) AS media FROM jacnotas WHERE peca = "amortesalva"', (e
 
 
 app.post('/api/nota/sina', isAuthenticated, (req, res) => {
-  const { nota } = req.body;
-  const stmt = db.prepare('INSERT INTO jacnotas (valor, peca) VALUES (?, "sina")');
-  
-  stmt.run(nota, function(err) {
-      if (err) {
-          res.status(500).send('Erro ao salvar a nota');
-          return;
-      }
-      res.status(200).send('Nota salva com sucesso!');
-  });
+    const { nota } = req.body;
+    const mat = req.session.matricula;
 
-  stmt.finalize();
+    dbjac.serialize(() => {
+        dbjac.get('SELECT id FROM jacnotas WHERE peca = "sina" AND usuario = ?', [mat], (err, row) => {
+            if (err) {
+                res.status(500).send('Erro ao verificar a nota existente!');
+                return;
+            }
+
+            if (row) {
+                // Atualizar a nota existente
+                dbjac.run('UPDATE jacnotas SET valor = ? WHERE id = ?', [nota, row.id], (err) => {
+                    if (err) {
+                        res.status(500).send(`Erro ao atualizar a nota: ${err.message}`);
+                        return;
+                    }
+                    res.status(200).send('Nota salva com sucesso!');
+                });
+            } else {
+                // Inserir uma nova nota
+                dbjac.run('INSERT INTO jacnotas (valor, peca, usuario) VALUES (?, "sina", ?)', [nota, mat], (err) => {
+                    if (err) {
+                        res.status(500).send(`Erro ao salvar a nota: ${err.message}`);
+                        return;
+                    }
+                    res.status(200).send('Nota salva com sucesso!');
+                });
+            }
+        });
+    });
 });
 
 app.get('/api/media/sina', (req, res) => {
-db.get('SELECT AVG(valor) AS media FROM jacnotas WHERE peca = "sina"', (err, row) => {
+dbjac.get('SELECT AVG(valor) AS media FROM jacnotas WHERE peca = "sina"', (err, row) => {
     if (err) {
         res.status(500).send('Erro ao calcular a média');
         return;
@@ -264,56 +317,93 @@ db.get('SELECT AVG(valor) AS media FROM jacnotas WHERE peca = "sina"', (err, row
 
 
 app.post('/api/nota/raizes', isAuthenticated, (req, res) => {
-  const { nota } = req.body;
-  const stmt = db.prepare('INSERT INTO jacnotas (valor, peca) VALUES (?, "raizes da ignorancia")');
-  
-  stmt.run(nota, function(err) {
-      if (err) {
-          res.status(500).send('Erro ao salvar a nota');
-          return;
-      }
-      res.status(200).send('Nota salva com sucesso!');
-  });
+    const { nota } = req.body;
+    const mat = req.session.matricula;
 
-  stmt.finalize();
+    dbjac.serialize(() => {
+        dbjac.get('SELECT id FROM jacnotas WHERE peca = "raízes da ignorância" AND usuario = ?', [mat], (err, row) => {
+            if (err) {
+                res.status(500).send('Erro ao verificar a nota existente!');
+                return;
+            }
+
+            if (row) {
+                // Atualizar a nota existente
+                dbjac.run('UPDATE jacnotas SET valor = ? WHERE id = ?', [nota, row.id], (err) => {
+                    if (err) {
+                        res.status(500).send(`Erro ao atualizar a nota: ${err.message}`);
+                        return;
+                    }
+                    res.status(200).send('Nota salva com sucesso!');
+                });
+            } else {
+                // Inserir uma nova nota
+                dbjac.run('INSERT INTO jacnotas (valor, peca, usuario) VALUES (?, "raízes da ignorância", ?)', [nota, mat], (err) => {
+                    if (err) {
+                        res.status(500).send(`Erro ao salvar a nota: ${err.message}`);
+                        return;
+                    }
+                    res.status(200).send('Nota salva com sucesso!');
+                });
+            }
+        });
+    });
 });
 
 app.get('/api/media/raizes', (req, res) => {
-db.get('SELECT AVG(valor) AS media FROM jacnotas WHERE peca = "raizes da ignorancia"', (err, row) => {
-    if (err) {
-        res.status(500).send('Erro ao calcular a média');
-        return;
-    }
-    res.json({ media: row.media || 0 });
+    dbjac.get('SELECT AVG(valor) AS media FROM jacnotas WHERE peca = "raízes da ignorância"', (err, row) => {
+        if (err) {
+            res.status(500).send('Erro ao calcular a média');
+            return;
+        }
+        res.json({ media: row.media || 0 });
+    });
 });
-});
+
 
 app.post('/api/nota/lindasdemorrer', isAuthenticated, (req, res) => {
-  const { nota } = req.body;
-  const stmt = db.prepare('INSERT INTO jacnotas (valor, peca) VALUES (?, "lindas de morrer")');
-  
-  stmt.run(nota, function(err) {
-      if (err) {
-          res.status(500).send('Erro ao salvar a nota');
-          return;
-      }
-      res.status(200).send('Nota salva com sucesso!');
-  });
+    const { nota } = req.body;
+    const mat = req.session.matricula;
 
-  stmt.finalize();
+    dbjac.serialize(() => {
+        dbjac.get('SELECT id FROM jacnotas WHERE peca = "lindas de morrer" AND usuario = ?', [mat], (err, row) => {
+            if (err) {
+                res.status(500).send('Erro ao verificar a nota existente!');
+                return;
+            }
+
+            if (row) {
+                // Atualizar a nota existente
+                dbjac.run('UPDATE jacnotas SET valor = ? WHERE id = ?', [nota, row.id], (err) => {
+                    if (err) {
+                        res.status(500).send(`Erro ao atualizar a nota: ${err.message}`);
+                        return;
+                    }
+                    res.status(200).send('Nota salva com sucesso!');
+                });
+            } else {
+                // Inserir uma nova nota
+                dbjac.run('INSERT INTO jacnotas (valor, peca, usuario) VALUES (?, "lindas de morrer", ?)', [nota, mat], (err) => {
+                    if (err) {
+                        res.status(500).send(`Erro ao salvar a nota: ${err.message}`);
+                        return;
+                    }
+                    res.status(200).send('Nota salva com sucesso!');
+                });
+            }
+        });
+    });
 });
 
 app.get('/api/media/lindasdemorrer', (req, res) => {
-db.get('SELECT AVG(valor) AS media FROM jacnotas WHERE peca = "lindas de morrer"', (err, row) => {
-    if (err) {
-        res.status(500).send('Erro ao calcular a média');
-        return;
-    }
-    res.json({ media: row.media || 0 });
+    dbjac.get('SELECT AVG(valor) AS media FROM jacnotas WHERE peca = "lindas de morrer"', (err, row) => {
+        if (err) {
+            res.status(500).send('Erro ao calcular a média');
+            return;
+        }
+        res.json({ media: row.media || 0 });
+    });
 });
-});
-
-
 
 
 

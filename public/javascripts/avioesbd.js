@@ -13,6 +13,7 @@ document.getElementById('notaForm').addEventListener('submit', async (event) => 
 
         if (!response.ok) {
             throw new Error('Falha ao enviar a nota! Verifique se está logado.');
+           
         }
         
         alert('Nota enviada com sucesso!');
