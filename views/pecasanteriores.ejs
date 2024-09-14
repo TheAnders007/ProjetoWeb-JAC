@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> JAC - Peças Anteriores </title>
-    <link rel="stylesheet" href="/stylesheets/pecasanteriores.css">
+    <link rel="stylesheet" href="/stylesheets/pesquisa.css">
     <link rel="shortcut icon" type="imagex/png" href="/images/iconJac.ico">
 </head>
 
@@ -17,7 +17,7 @@
         <a href="/pecasanteriores"> <h1 id="topo"> Menu de Peças </h1> </a>
         <style> #topo{font-size: 4vh; bottom: 50%; margin-top: -13%;} .linha{margin-top: 1%; height: 0.2%;} </style>
         <p class="linha"> </p>
-          <a href="/pecasanteriores/avioesdepapel" class="peca"> 2023 (X JAC) </a>
+          <a href="/pecasanteriores/avioesdepapel" class="edicao"> 2023 (X JAC) </a>
           <a href="/pecasanteriores" class="peca"> 2022 (IX JAC)</a>
           <a href="/pecasanteriores" class="peca"> 2018 (VIII JAC)</a>
           <a href="/pecasanteriores" class="peca"> 2018 (VII JAC)</a>
@@ -35,45 +35,20 @@
     </header>
     
     <script src="/javascripts/boasvindas.js"> </script>
+    <script src="/javascripts/pesquisapeca.js"> </script>
 
     <div class="pesquisa">
         <input id="campo_pesquisa" type="text" placeholder="Pesquise o nome de uma peça">
-        <img src="/images/lupa.png" id="procurar">
+        <img src="/images/lupa.png" id="procurar" onclick="search()">
     </div>
 
-    <style>
-        #campo_pesquisa{
-            top: 13vh;
-            left: 40%;
-            width: 40vw;
-            height: 3.5vh;
-            border-radius: 10px;
-            background-color:rgb(199, 199, 199);
-            border: 1px solid rgb(255, 218, 124);
-            font-size: 2.5vh;
-            color:black;
-        }
-        #campo_pesquisa::placeholder{
-            font-size: 2.5vh;
-        }
-        #procurar{
-            position: absolute;
-            left: 83%;
-            height: 4.5vh;
-            top: 13vh;
-
-        }
-    </style>
-
-
-<h1 class="confira"> ⬅ Confira as peças anteriores!! </h1>
+<div id="resultados"> </div>
+<div id="erro"></div>
 
 <footer> 
     <a class="rede" href="https://www.instagram.com/jac.ifcefortaleza/"> <img src="/images/insta-icon.svg"> </a>
     <a class="rede" href="https://www.youtube.com/@mostrainterdisciplinarjuv"> <img src="/images/yout-icon.svg"> </a>
 </footer>
-
-<style> .container{height: 86vh; margin-bottom: -10px;}</style>
 
 </body>
 

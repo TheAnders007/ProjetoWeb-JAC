@@ -168,9 +168,29 @@ app.get('/user', (req, res) => {
 
 
 
+// Criação da tabela das peças, se não existir
+dbjac.serialize(() => {
+    dbjac.run('CREATE TABLE IF NOT EXISTS jacpecas (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT, ano INTEGER, caminho TEXT)');
+});
+
+app.get('/search', (req, res) => {
+    const searchTerm = req.query.term;
+
+    if (!searchTerm) {
+        return res.status(400).send('Termo de pesquisa não fornecido.');
+    }
+
+    // Buscar peças no banco de dados
+    dbjac.all('SELECT nome, ano, caminho FROM jacpecas WHERE nome LIKE ?', [`%${searchTerm}%`], (err, rows) => {
+        if (err) {
+            return res.status(500).send('Erro ao consultar o banco de dados.');
+        }
 
 
-
+        res.setHeader('Content-Type', 'application/json');
+        res.json(rows);
+    });
+});
 
 
 // Criação da tabela de notas, se não existir
