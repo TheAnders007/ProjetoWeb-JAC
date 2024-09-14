@@ -6,6 +6,10 @@
 ![Captura de tela 2024-09-13 211227](https://github.com/user-attachments/assets/b7220b05-d095-4df8-a7f7-435c60d68f21)
 <br>
 
+<h2> Pesquisar Peças </h2>
+
+![Captura de tela 2024-09-14 155221](https://github.com/user-attachments/assets/d453f739-7924-44ed-a2e4-411dc4bcb094)
+
 <h2> Sobre a Peça </h2>
 
 ![Captura de tela 2024-09-13 211305](https://github.com/user-attachments/assets/3663e48e-9a9c-442d-965d-37920ab82de1)
