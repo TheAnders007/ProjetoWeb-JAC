@@ -226,6 +226,7 @@ BUTTON{
     font-family: "Work Sans", sans-serif;
     background-color: #FF6A6A;
     font-size: 2vh;
+    cursor: pointer;
 }
 
 .avMedia{
