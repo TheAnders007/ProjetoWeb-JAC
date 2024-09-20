@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> JAC - Peças Anteriores </title>
+    <link rel="stylesheet" href="/public/stylesheets/pesquisa.css">
+    <link rel="shortcut icon" type="imagex/png" href="/public/images/iconJac.ico">
+</head>
+
+<body>
+
+
+    <div class="container">
+        <a href="/pecasanteriores"> <h1 id="topo"> Menu de Peças </h1> </a>
+        <style> #topo{font-size: 4vh; bottom: 50%; margin-top: -13%;} .linha{margin-top: 1%; height: 0.2%;} </style>
+        <p class="linha"> </p>
+          <a href="/pecasanteriores/avioesdepapel" class="edicao"> 2023 (X JAC) </a>
+          <a href="/pecasanteriores/assistematico" class="edicao"> 2022 (IX JAC)</a>
+          <a href="/pecasanteriores" class="edicao"> 2018 (VIII JAC)</a>
+          <a href="/pecasanteriores" class="edicao"> 2018 (VII JAC)</a>
+          <a href="/pecasanteriores" class="edicao"> 2017 (VI JAC)</a>
+          <a href="/pecasanteriores" class="edicao"> 2016 (V JAC)</a>
+          <a href="/pecasanteriores" class="edicao"> 2014 (IV JAC)</a>
+          <a href="/pecasanteriores" class="edicao"> 2013 (III JAC)</a>
+          <a href="/pecasanteriores" class="edicao"> 2012 (II JAC)</a>
+          <a href="/pecasanteriores" class="edicao"> 2012 (I JAC)</a>
+    </div>
+
+    <header>
+        <a href="/"> <img src="/public/images/retorno.png" id="casa"> </a>
+        <p id="boas-vindas" class="itemMenu"> Olá! Venha saber mais sobre as peças clicando no menu da esquerda! </p>
+    </header>
+    
+    <script src="/javascripts/boasvindas.js"> </script>
+    <script src="/javascripts/pesquisapeca.js"> </script>
+
+    <div class="pesquisa">
+        <input id="campo_pesquisa" type="text" placeholder="Pesquise o nome de uma peça">
+        <img src="/public/images/lupa.png" id="procurar" onclick="search()">
+    </div>
+
+<div id="resultados"> </div>
+<div id="erro"></div>
+
+<footer> 
+    <a class="rede" href="https://www.instagram.com/jac.ifcefortaleza/"> <img src="/public/images/insta-icon.svg"> </a>
+    <a class="rede" href="https://www.youtube.com/@mostrainterdisciplinarjuv"> <img src="/public/images/yout-icon.svg"> </a>
+</footer>
+
+</body>
+
+</html>
