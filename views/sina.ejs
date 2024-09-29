@@ -134,11 +134,15 @@
       </div>
 
       <form id="notaForm">
-        <input id="notaSina" type="number" placeholder="Dê a sua nota">
+        <input id="notaPeca" type="number" placeholder="Dê a sua nota" min="0" max="10" step="0.1">
         <button type="submit">ENVIAR</button>
       </form>
+      
+      <script>
+        const tituloPeca = "sina";
+      </script>
 
-      <script src="/javascripts/sinabd.js"> </script>
+      <script src="/javascripts/notasbd.js"> </script>
       
 
   </body>

@@ -10,12 +10,10 @@ async function search() {
 
         if (contentType && contentType.includes('application/json')) {
             const data = await response.json();
-            
-            const filteredData = data.filter(item => item.nome.includes(searchTerm));
 
             // Gera a tabela com os resultados
             let html = '<table><thead><tr><th>Nome da Peça</th><th>Ano</th><th>Página da Peça</th></tr></thead><tbody>';
-            filteredData.forEach(item => {
+            data.forEach(item => {
                 html += `
                     <tr>
                         <td>${item.nome}</td>

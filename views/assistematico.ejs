@@ -1,10 +1,10 @@
 <%- include('./partials/headerPeca2022') %>
 
-<p class="titulo"> Assistemático </p>
+<p  class="titulo"> Assistemático </p>
 
   <a href="https://www.youtube.com/watch?v=oy0Gieqn520" title="Clique aqui para ver a peça"> <img class="pecaimagem" src="/images/assistematico.jpg"> </a>
 
-  <a href="https://photos.google.com/share/AF1QipP_-papoVjA9D3fxIa63Rm_xE_hFhy_Jykk6H20ojtjmOH9sYIL3aFHzmglk48oUw?key=S3NTNGJYUS1fNHI0RWJfa1dwRXZ6Y0ZtTEZYWkx3" title="Clique aqui para ver as imagens da peça"> <img class="fotospeca" src="/images/camera.png"> </a>
+  <a href="https://photos.app.goo.gl/9yzsgLJs8yrVZXi96" title="Clique aqui para ver as imagens da peça"> <img class="fotospeca" src="/images/camera.png"> </a>
 
   <p class="sinopse"> 
       ⠀⠀Com o avanço da tecnologia, a sociedade adquiriu um novo cenário: robôs e humanos vivem no mesmo meio. No entanto, o que era para ser uma relação de submissão acaba entrando em discussão quando o Robô Q2 adquire consciência e uma mente biologicamente similar a de um humano. Junto de seus amigos artistas, ele tenta se descobrir atraves das artes, como a música, a pintura, o teatro e a literatura, e compartilhar os seus sentimentos e aprendizados.
@@ -135,11 +135,15 @@
     </div>
 
     <form id="notaForm">
-      <input id="notaAssistematico" type="number" placeholder="Dê a sua nota"  min="0" max="10" required>
+      <input id="notaPeca" type="number" placeholder="Dê a sua nota"  min="0" max="10" step="0.1" required>
       <button type="submit">ENVIAR</button>
     </form>    
+  
+    <script>
+        const tituloPeca = "assistemático";
+    </script>
 
-  <script src="/javascripts/assistematicobd.js"></script>
+  <script src="/javascripts/notasbd.js"></script>
 </body>
 
 </html>
