@@ -157,6 +157,8 @@ h1 {
     top: 27%;
 }
 
+
+
 .pecaInfo{
     color: beige;
     font-size: 1.3vw;
@@ -165,13 +167,18 @@ h1 {
     top: 65%;
 }
 
-table {
-    border-collapse: collapse;
+
+.containerTabForm{
     position: absolute;
+    left: 33%;
     top: 95%;
 }
 
-table, th,td, tr {
+.containerTabForm table{
+    border-collapse: collapse;
+}
+
+.containerTabForm table, th, td, tr{
   font-family: "Work Sans", sans-serif;
   color: beige;
   padding: 2%;
@@ -179,28 +186,24 @@ table, th,td, tr {
   left: 33%;
   width: 120vh;
   text-align: center;
-  margin-bottom: 50%;
+  margin-bottom: 1%;
   font-size: 1.2vw;
 }
 
-th{
-    background-color: black;
-}
-
-.linha2 {
+.containerTabForm .linha2 {
     color: rgb(230, 230, 218);
     position: relative;
     background-color: rgba(245, 245, 220, 0.863);
     margin-bottom: 16vh;
-    width: 30vh;
+    width: 34vh;
     height: 0.2vh;
     font-size: 2.5vh;
 }
 
-input{
-    position: absolute;
-    left: 70%;
-    bottom: -224vh;
+.containerTabForm input{
+    position: relative;
+    left: 63%;
+    top: 5vh;
     width: 27vh;
     height: 8vh;
     border-radius: 10px;
@@ -212,14 +215,14 @@ input{
     text-align: center;
 }
 
-input::placeholder{
+.containerTabForm input::placeholder{
     font-size: 3vh;
 }
 
-BUTTON{
-    position: absolute;
-    left: 85%;
-    bottom: -222vh;
+.containerTabForm button{
+    position: relative;
+    left: 65%;
+    top: 5vh;
     border-radius: 15px;
     padding: 0.3%;
     width: 11vh;
@@ -228,22 +231,23 @@ BUTTON{
     font-size: 2vh;
 }
 
-.avMedia{
-  position: absolute;
-  right: 45%;
-  bottom: -239vh;
+.containerTabForm .avMedia{
+  position: relative;
+  right: -8%;
+  top: 28vh;
   display: flex;
   flex-direction: column;
   text-align: center;
   margin: 0 auto;
 }
 
-#resultadoMedia{
+.containerTabForm #resultadoMedia{
     position: absolute;
     color: beige;
-    left: 34%;
-    font-size: 4vh;
+    left: 10.8%;
+    font-size: 4.2vh;
     text-align: center;
     width: 5%;
     bottom: 13vh;
 } 
+

@@ -1,0 +1,59 @@
+<%- include('./partials/headerPeca2022') %>
+
+<p class="titulo"> <%= titulo %> </p>
+
+  <a href="<%= linkVideo %>" title="Clique aqui para ver a peça"> <img class="pecaimagem" src="<%= imagemPeca %>"> </a>
+
+  <a href="<%= linkFotos %>" title="Clique aqui para ver as imagens da peça"> <img class="fotospeca" src="/images/camera.png"> </a>
+
+  <p class="sinopse"> 
+    <%= sinopse %>
+  </p>
+
+  <div class="pecaInfo"> 
+    <p> <b> Turma: </b> <%= turma %> </p>
+    <p> <b> Diretor de Turma: </b> <%= direcaoTurma %> </p>
+    <p> <b> Direção Geral: </b>  <%= direcaoGeral %> </p>
+    <p> <b> Prêmios/ Colocação: </b> <%= premios %> </p>
+  </div>
+  
+  <div class="containerTabForm"> 
+
+  <table>
+
+      <tr>
+        <th> Personagem </th>
+        <th> Ator/Atriz</th>
+      </tr>
+
+      <% elenco.forEach(personagem => { %>
+        <tr>
+            <td><%= personagem.nome %></td>
+            <td><%= personagem.ator %></td>
+        </tr>
+    <% }); %>
+
+    </table>
+
+    
+    <div class="avMedia"> 
+      <p id="resultadoMedia"> </p>
+      <p class="linha2"> Avaliação Média </p>
+    </div>
+
+    <form id="notaForm">
+      <input id="notaPeca" type="number" placeholder="Dê a sua nota" min="0" max="10" step="0.1">
+      <button type="submit">ENVIAR</button>
+    </form>
+
+    </div>
+    
+    <script>
+      const tituloPeca = "<%= titulo %>";
+    </script>
+
+    <script src="/javascripts/notasbd.js"> </script>
+    
+</body>
+
+</html>
