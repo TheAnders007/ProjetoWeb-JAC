@@ -12,15 +12,8 @@ var logger = require("morgan");
 
 var indexRouter = require("./routes/index");
 var eventoRouter = require("./routes/evento");
-var avioesdepapelRouter = require("./routes/pecas2023/avioesdepapel");
-var amortesalvaRouter = require("./routes/pecas2023/amortesalva");
-var sinaRouter = require("./routes/pecas2023/sina");
 var pecasanterioresRouter = require("./routes/pecasanteriores");
-var raizIgnoRouter = require("./routes/pecas2023/raizesdaignorancia");
-var lindasRouter = require("./routes/pecas2023/lindasdemorrer");
-var morteVaqueiroRouter = require("./routes/pecas2023/amortedovaqueiro");
-var entrevindasRouter = require("./routes/pecas2023/entrevindas");
-var alemdaCriacaoRouter = require("./routes/pecas2023/alemdacriacao");
+var pecas2023Router = require("./routes/pecas2023/pecas2023"); 
 var assistematicoRouter = require("./routes/assistematico");
 var contagioRouter = require("./routes/contagiomentira");
 var loginRouter = require("./routes/login");
@@ -306,15 +299,9 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
 app.use("/evento", eventoRouter);
-app.use("/pecasanteriores/avioesdepapel", avioesdepapelRouter);
-app.use("/pecasanteriores/amortesalva", amortesalvaRouter);
+
 app.use("/pecasanteriores", pecasanterioresRouter);
-app.use("/pecasanteriores/sina", sinaRouter);
-app.use("/pecasanteriores/raizesdaignorancia", raizIgnoRouter);
-app.use("/pecasanteriores/lindasdemorrer", lindasRouter);
-app.use("/pecasanteriores/amortedovaqueiro", morteVaqueiroRouter);
-app.use("/pecasanteriores/entrevindas", entrevindasRouter);
-app.use("/pecasanteriores/alemdacriacao", alemdaCriacaoRouter);
+app.use("/pecasanteriores", pecas2023Router);
 app.use("/pecasanteriores/assistematico", assistematicoRouter);
 app.use("/login", loginRouter);
 app.use("/cadastro", cadastroRouter);
