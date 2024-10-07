@@ -11,7 +11,7 @@ router.get("/", function (req, res, next) {
     direcaoGeral: "Davi Oliveira e Nicoly Silva",
     premios: "6º Lugar - Melhor Peça.",
     linkVideo: "https://www.youtube.com/watch?v=4aMtIQ1iXyY",
-    imagemPeca: "/images/amortedovaqueiro.jpg",
+    imagemPeca: "/images/pecas2023/amortedovaqueiro.jpg",
     linkFotos: "https://photos.app.goo.gl/Sr7c4tpmA7Y5cKmd7",
 
     elenco: [

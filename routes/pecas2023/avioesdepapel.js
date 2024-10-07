@@ -11,7 +11,7 @@ router.get("/", function (req, res, next) {
     direcaoGeral: "Julio França Menezes Nascimento; Jean Augusto Marques da Silva",
     premios: "1º Lugar - Melhor Peça; Melhor Roteiro; Melhores Diretores Gerais.",
     linkVideo: "https://www.youtube.com/watch?v=3PbJPqNQYTs",
-    imagemPeca: "/images/avioesdepapel.jpeg",
+    imagemPeca: "/images/pecas2023/avioesdepapel.jpeg",
     linkFotos: "https://photos.app.goo.gl/9yzsgLJs8yrVZXi96",
 
     elenco: [

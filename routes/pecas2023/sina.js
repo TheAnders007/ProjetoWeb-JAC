@@ -11,7 +11,7 @@ router.get("/", function (req, res, next) {
     direcaoGeral: "Adney Pinheiro e Brena Deodato",
     premios: "3º Lugar - Melhor Peça.",
     linkVideo: "https://www.youtube.com/watch?v=nxn6X7gjwCI",
-    imagemPeca: "/images/sina.jpg",
+    imagemPeca: "/images/pecas2023/sina.jpg",
     linkFotos: "https://photos.app.goo.gl/irSh15hRrJkCzsBd6",
 
     elenco: [

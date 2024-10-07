@@ -14,8 +14,8 @@ var indexRouter = require("./routes/index");
 var eventoRouter = require("./routes/evento");
 var pecasanterioresRouter = require("./routes/pecasanteriores");
 var pecas2023Router = require("./routes/pecas2023/pecas2023"); 
-var assistematicoRouter = require("./routes/assistematico");
-var contagioRouter = require("./routes/contagiomentira");
+var pecas2022Router = require("./routes/pecas2022/pecas2022");
+
 var loginRouter = require("./routes/login");
 var cadastroRouter = require("./routes/cadastro");
 
@@ -302,10 +302,11 @@ app.use("/evento", eventoRouter);
 
 app.use("/pecasanteriores", pecasanterioresRouter);
 app.use("/pecasanteriores", pecas2023Router);
-app.use("/pecasanteriores/assistematico", assistematicoRouter);
+app.use("/pecasanteriores", pecas2022Router);
+
 app.use("/login", loginRouter);
 app.use("/cadastro", cadastroRouter);
-app.use("/pecasanteriores/ocontagiodamentira", contagioRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

@@ -11,7 +11,7 @@ router.get("/", function (req, res, next) {
     direcaoGeral: "Thaís Viana Cunha e Adriana Silveira da Costa",
     premios: "11º Lugar - Melhor Peça",
     linkVideo: "https://www.youtube.com/watch?v=eAa2Ti3jupY",
-    imagemPeca: "/images/diario.jpg",
+    imagemPeca: "/images/pecas2023/diario.jpg",
     linkFotos: "https://photos.app.goo.gl/hDh2sEA536FU3ySQA",
 
     elenco: [

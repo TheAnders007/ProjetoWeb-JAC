@@ -11,7 +11,7 @@ router.get("/", function (req, res, next) {
     direcaoGeral: "Ana Graziely Silva Sousa, Aylis Silva Alves e Maria Christine Braz Duarte.",
     premios: "9º Lugar - Melhor Peça.",
     linkVideo: "https://www.youtube.com/watch?v=3VJBPGjOXNk",
-    imagemPeca: "/images/imperfeitos.jpg",
+    imagemPeca: "/images/pecas2023/imperfeitos.jpg",
     linkFotos: "https://photos.app.goo.gl/qhJuMqAZTKtStJC8A",
 
     elenco: [

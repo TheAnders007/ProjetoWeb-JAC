@@ -11,7 +11,7 @@ router.get("/", function (req, res, next) {
     direcaoGeral: "Kevin Araújo da Silva e Erick Bittencourt da Silva",
     premios: "7º Lugar - Melhor Peça.",
     linkVideo: "https://www.youtube.com/watch?v=kh3wTGDiDfA&list=PLpWiXtYfeqjKZzlFIlv9HEkXvJ4EQ-u9w",
-    imagemPeca: "/images/entrevindas.jpg",
+    imagemPeca: "/images/pecas2023/entrevindas.jpg",
     linkFotos: "https://photos.app.goo.gl/5KYqYVHBKRJb9bgJ6",
 
     elenco: [

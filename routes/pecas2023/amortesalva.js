@@ -11,7 +11,7 @@ router.get("/", function (req, res, next) {
     direcaoGeral: "Bruna Machado",
     premios: "2º Lugar - Melhor Peça.",
     linkVideo: "https://youtu.be/ldQY2LdyHhQ?si=hq81zyMkrDcPYWJc",
-    imagemPeca: "/images/amortesalva.jpeg",
+    imagemPeca: "/images/pecas2023/amortesalva.jpeg",
     linkFotos: "https://photos.app.goo.gl/xzZBi4h21F4VLSARA",
 
     elenco: [

@@ -11,7 +11,7 @@ router.get("/", function (req, res, next) {
     direcaoGeral: "Leontino Cavalcante da Silva",
     premios: "8º Lugar - Melhor Peça.",
     linkVideo: "https://www.youtube.com/watch?v=8jtM2FbMgo8&list=PLpWiXtYfeqjKZzlFIlv9HEkXvJ4EQ-u9w",
-    imagemPeca: "/images/alemdacriacao.jpg",
+    imagemPeca: "/images/pecas2023/alemdacriacao.jpg",
     linkFotos: "https://photos.app.goo.gl/co6zYAnyE322NDFbA",
 
     elenco: [

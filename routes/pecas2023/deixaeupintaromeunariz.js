@@ -11,7 +11,7 @@ router.get("/", function (req, res, next) {
     direcaoGeral: "Edson Matheus Rôla Braga e Nairton Santos Pinheiro",
     premios: "10º Lugar - Melhor Peça.",
     linkVideo: "https://www.youtube.com/watch?v=1QzRJryl3mY",
-    imagemPeca: "/images/deixaeupintaromeunariz.jpg",
+    imagemPeca: "/images/pecas2023/deixaeupintaromeunariz.jpg",
     linkFotos: "https://photos.app.goo.gl/vXgn4VXwuZ6Dyp6S8",
 
     elenco: [

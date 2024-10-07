@@ -11,7 +11,7 @@ router.get("/", function (req, res, next) {
     direcaoGeral: "Markos Medeiros e Arthur Gabriel Oliveira Sena",
     premios: "4º Lugar - Melhor Peça; Melhor Diretor de Turma.",
     linkVideo: "https://www.youtube.com/watch?v=gZmO_vE5LtM",
-    imagemPeca: "/images/raizesdaignorancia.jpeg",
+    imagemPeca: "/images/pecas2023/raizesdaignorancia.jpeg",
     linkFotos: "https://photos.app.goo.gl/jojFAT8WJXe3e9GH6",
 
     elenco: [

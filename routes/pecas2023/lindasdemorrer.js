@@ -11,7 +11,7 @@ router.get("/", function (req, res, next) {
     direcaoGeral: "Anabel Lessa e Maria Clara Barbosa",
     premios: "5º Lugar - Melhor Peça; Melhor Atriz: Ingrid da Silva Barros.",
     linkVideo: "https://www.youtube.com/watch?v=SPPwDvc0TtI",
-    imagemPeca: "/images/lindasdemorrer.jpeg",
+    imagemPeca: "/images/pecas2023/lindasdemorrer.jpeg",
     linkFotos: "https://photos.app.goo.gl/3jSxkeG1xf4kzsxQ7",
 
     elenco: [

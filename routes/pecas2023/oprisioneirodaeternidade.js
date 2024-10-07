@@ -11,7 +11,7 @@ router.get("/", function (req, res, next) {
     direcaoGeral: "Glaydson dos Santos Santana e Luiz Mário da Silva Ferreira",
     premios: "12º Lugar - Melhor Peça",
     linkVideo: "https://www.youtube.com/watch?v=pR6lG6KnbXk",
-    imagemPeca: "/images/prisioneirodaeternidade.jpg",
+    imagemPeca: "/images/pecas2023/prisioneirodaeternidade.jpg",
     linkFotos: "https://photos.app.goo.gl/fsga9LkGk71BLe1t8",
 
     elenco: [
